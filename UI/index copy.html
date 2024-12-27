@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test WebSocket</title>
+</head>
+<body>
+    <h1>WebSocket Test</h1>
+    <div id="messages">
+        <p>Connecting to WebSocket...</p>
+    </div>
+    <script>
+        const ws = new WebSocket("ws://127.0.0.1:45441/ws");
+
+        ws.onopen = function() {
+            const messagesDiv = document.getElementById("messages");
+            const newMessage = document.createElement("p");
+            newMessage.textContent = "WebSocket connection established.";
+            messagesDiv.appendChild(newMessage);
+        };
+
+        ws.onmessage = function(event) {
+            const messagesDiv = document.getElementById("messages");
+            const newMessage = document.createElement("p");
+            newMessage.textContent = "New message: " + event.data;
+            messagesDiv.appendChild(newMessage);
+        };
+
+        ws.onerror = function(error) {
+            console.error("WebSocket error:", error);
+        };
+    </script>
+</body>
+</html>

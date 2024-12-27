@@ -32,8 +32,9 @@
 
     <script>
         // สร้างการเชื่อมต่อกับ SSE
-        const eventSource = new EventSource("http://127.0.0.1:8010/events");
-
+        //const eventSource = new EventSource("http://127.0.0.1:8010/events");
+        const eventSource = new EventSource("http://127.0.0.1:45441/events");
+        
         // เมื่อได้รับข้อมูลจาก server
         eventSource.onmessage = function(event) {
             console.log("ok connet")

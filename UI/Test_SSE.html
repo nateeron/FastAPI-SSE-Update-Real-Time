@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test SSE</title>
+</head>
+<body>
+    <h1>Real-Time Price Updates</h1>
+    <div id="events">
+        <p>Listening for updates...</p>
+    </div>
+    <script>
+        // Connect to the SSE endpoint
+        const eventSource = new EventSource("http://127.0.0.1:45441/events");
+
+        eventSource.onmessage = function(event) {
+            const eventsDiv = document.getElementById("events");
+            const newMessage = document.createElement("p");
+            newMessage.textContent = event.data; // Show the new data
+            eventsDiv.appendChild(newMessage);
+        };
+
+        eventSource.onerror = function() {
+            console.error("Failed to connect to SSE endpoint.");
+        };
+    </script>
+</body>
+</html>
